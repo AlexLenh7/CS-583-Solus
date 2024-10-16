@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Solus.sln"
+    "dotnet.defaultSolution": "CS-583-Solus.sln"
 }
