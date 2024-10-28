@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 1f;
     public Rigidbody2D rb;
-    private Vector2 moveDirection;
+    public Vector2 moveDirection;
     public Animator animator;
     private Vector2 lastMoveDirection;
     public bool canMove = true;
