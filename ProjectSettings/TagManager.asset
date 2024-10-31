@@ -12,9 +12,9 @@ TagManager:
   - Water
   - UI
   - Terrain
-  - 
-  - 
-  - 
+  - Player
+  - Objects
+  - Enemies
   - 
   - 
   - 
@@ -40,4 +40,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 3127590411
+    locked: 0
+  - name: Walkinfront
+    uniqueID: 4102620199
+    locked: 0
+  - name: Collision
+    uniqueID: 185931277
+    locked: 0
+  - name: Player
+    uniqueID: 2600688281
+    locked: 0
+  - name: Melee
+    uniqueID: 1010620903
+    locked: 0
+  - name: Walkbehind
+    uniqueID: 4242495579
+    locked: 0
+  - name: Undead
+    uniqueID: 1946427863
     locked: 0
