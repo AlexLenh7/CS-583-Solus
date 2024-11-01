@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f8afb0fd40cfd10448085a2c1e971ff6
+guid: 2af0618382781cf49a71034b77c1a337
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Down Attack Sprite_0
+      name: Hurt Right_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 40
-        height: 50
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b0861608fe373143a492eda538196b0
-      internalID: 1910938535
+      spriteID: adcee09cf530a734d958efaf9700b1c6
+      internalID: 1633229597
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Down Attack Sprite_1
+      name: Hurt Right_1
       rect:
         serializedVersion: 2
         x: 40
         y: 0
         width: 40
-        height: 50
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c91a87c3b001ac34e95d9e406655a7eb
-      internalID: -2046533241
+      spriteID: 680afaa8aee0b454e87ca4bf9a779354
+      internalID: -1037900485
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Down Attack Sprite_2
+      name: Hurt Right_2
       rect:
         serializedVersion: 2
         x: 80
         y: 0
         width: 40
-        height: 50
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5a1c33034a07764f83e99004fc80803
-      internalID: -2080514067
+      spriteID: 314473c8d17207e41a0c767c3c940147
+      internalID: -1642421852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Down Attack Sprite_3
+      name: Hurt Right_3
       rect:
         serializedVersion: 2
         x: 120
         y: 0
         width: 40
-        height: 50
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,8 +174,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44178d3f6ac7268459ccf0beba905999
-      internalID: 35309848
+      spriteID: 4704dfb729fb2944280e8f0580f5312b
+      internalID: 1162270020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hurt Right_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42c40fef8aaf5b145886205490514b0b
+      internalID: 142476732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hurt Right_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d760169968c1c354886d3ecd983ef10d
+      internalID: -1684825066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hurt Right_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55914662ac1e76c4b993827ae753a77d
+      internalID: 1856467210
       vertices: []
       indices: 
       edges: []
@@ -191,10 +254,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Down Attack Sprite_0: 1910938535
-      Down Attack Sprite_1: -2046533241
-      Down Attack Sprite_2: -2080514067
-      Down Attack Sprite_3: 35309848
+      Hurt Right_0: 1633229597
+      Hurt Right_1: -1037900485
+      Hurt Right_2: -1642421852
+      Hurt Right_3: 1162270020
+      Hurt Right_4: 142476732
+      Hurt Right_5: -1684825066
+      Hurt Right_6: 1856467210
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

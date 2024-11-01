@@ -114,30 +114,6 @@ public class PlayerAttack : MonoBehaviour
         attackColliderDown.gameObject.SetActive(false);
     }
 
-        void OnDrawGizmos()
-    {
-        if (attackColliderRight.gameObject.activeSelf)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(attackColliderRight.position, 0.1f); // or draw the collider shape
-        }
-        if (attackColliderLeft.gameObject.activeSelf)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(attackColliderLeft.position, 0.1f);
-        }
-        if (attackColliderUp.gameObject.activeSelf)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(attackColliderUp.position, 0.1f);
-        }
-        if (attackColliderDown.gameObject.activeSelf)
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(attackColliderDown.position, 0.1f);
-        }
-    }
-
     public void FinishAttack()
     {
         playerMovement.canMove = true; // Re-enable movement

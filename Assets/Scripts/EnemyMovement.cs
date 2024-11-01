@@ -10,6 +10,9 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 movement;
 
     private Vector2 moveDirection;
+
+    private bool isDying = false;
+    public float fadeDuration = 1f;
     
     // Start is called before the first frame update
 
@@ -20,10 +23,13 @@ public class EnemyMovement : MonoBehaviour
 
 
     void Update()
-    {
-        MoveTowardsPlayer();
-        UpdateAnimation();
-        FlipSprite();
+    {   
+        if (!isDying)
+        {
+            MoveTowardsPlayer();
+            UpdateAnimation();
+            FlipSprite();
+        }
     }
 
     void MoveTowardsPlayer()
@@ -53,5 +59,30 @@ public class EnemyMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 0, 0); // Face right
         }
+    }
+
+    public void HandleDeath()
+    {
+        isDying = true;
+        animator.SetBool("IsDead", true); // Set IsDead in the Animator
+        animator.SetFloat("Speed", 0);    // Stop movement animations
+        StartCoroutine(FadeOutAndDestroy());
+    }
+
+    IEnumerator FadeOutAndDestroy()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        Color originalColor = spriteRenderer.color;
+        float fadeAmount;
+
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            fadeAmount = 1 - (t / fadeDuration);
+            spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, fadeAmount);
+            yield return null;
+        }
+
+        spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
+        Destroy(gameObject);
     }
 }

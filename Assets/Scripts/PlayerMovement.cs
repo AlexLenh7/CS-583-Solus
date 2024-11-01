@@ -8,14 +8,17 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Vector2 moveDirection;
     public Animator animator;
-    public Transform attackPoint; // Reference to attackPoint
-    public float attackPointOffset = 0.5f; // Distance to offset attackPoint
+    // public Transform attackPoint; // Reference to attackPoint
+    // public float attackPointOffset = 0.5f; // Distance to offset attackPoint
     [HideInInspector] public Vector2 lastMoveDirection;
     public bool canMove = true;
+
+    public bool isDying = false;
+    public float fadeDuration = 1f;
     
     void Update()
     {
-        if (canMove)
+        if (canMove && !isDying)
         {
             float moveX = Input.GetAxisRaw("Horizontal");
             float moveY = Input.GetAxisRaw("Vertical");
@@ -34,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // Update attackPoint position based on lastMoveDirection
-            UpdateAttackPointPosition();
+            //UpdateAttackPointPosition();
         }
         else
         {
@@ -54,14 +57,39 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void UpdateAttackPointPosition()
+    public void HandleDeath()
     {
-        if (attackPoint != null && lastMoveDirection != Vector2.zero)
-        {
-            // Position attackPoint a certain distance from the player in the direction of lastMoveDirection
-            attackPoint.localPosition = lastMoveDirection * attackPointOffset;
-        }
+        isDying = true;
+        animator.SetBool("isDead", true); // Set IsDead in the Animator
+        animator.SetFloat("Speed", 0);    // Stop movement animations
+        StartCoroutine(FadeOutAndDestroy());
     }
+
+    IEnumerator FadeOutAndDestroy()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        Color originalColor = spriteRenderer.color;
+        float fadeAmount;
+
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            fadeAmount = 1 - (t / fadeDuration);
+            spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, fadeAmount);
+            yield return null;
+        }
+
+        spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
+        Destroy(gameObject);
+    }
+
+    // void UpdateAttackPointPosition()
+    // {
+    //     if (attackPoint != null && lastMoveDirection != Vector2.zero)
+    //     {
+    //         // Position attackPoint a certain distance from the player in the direction of lastMoveDirection
+    //         attackPoint.localPosition = lastMoveDirection * attackPointOffset;
+    //     }
+    // }
 }
 
 
