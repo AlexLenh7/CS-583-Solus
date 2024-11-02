@@ -3,16 +3,23 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    private HealthUI healthUI;
     public int maxHealth = 100;
-    private int currentHealth;
+    public int currentHealth;
     public bool isDead = false;
     public Animator animator;
     private PlayerMovement playerMovement;
 
     void Start()
     {
+        healthUI = FindObjectOfType<HealthUI>();
         currentHealth = maxHealth;
         playerMovement = GetComponent<PlayerMovement>();
+
+        if (healthUI != null)
+        {
+            healthUI.OnHealthChanged();
+        }
     }
 
     public void TakeDamage(int damage)
@@ -20,6 +27,7 @@ public class PlayerStats : MonoBehaviour
         if (isDead) return;
 
         currentHealth -= damage;
+        if (healthUI != null) healthUI.OnHealthChanged();
         Debug.Log("Player took " + damage + " damage. Current health: " + currentHealth);
 
         // Trigger hurt animation based on current movement direction

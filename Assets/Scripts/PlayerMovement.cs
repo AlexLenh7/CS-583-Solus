@@ -57,9 +57,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void StopMovement()
+    {
+        canMove = false;
+        moveDirection = Vector2.zero;
+        rb.velocity = Vector2.zero;
+    }
+
     public void HandleDeath()
     {
         isDying = true;
+        StopMovement();
         animator.SetBool("isDead", true); // Set IsDead in the Animator
         animator.SetFloat("Speed", 0);    // Stop movement animations
         StartCoroutine(FadeOutAndDestroy());
@@ -67,6 +75,9 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator FadeOutAndDestroy()
     {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        yield return new WaitForSeconds(stateInfo.length);
+
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         Color originalColor = spriteRenderer.color;
         float fadeAmount;
