@@ -16,11 +16,13 @@ public class EnemyMovement : MonoBehaviour
     public float fadeDuration = 1f;
     
     private PowerUpManager dropManager;
+    private PlayerStats playerStats;
     // Start is called before the first frame update
 
     void Start()
     {
         player = FindObjectOfType<PlayerMovement>().transform;
+        playerStats = FindObjectOfType<PlayerStats>();
     }
 
     void Awake()
@@ -42,7 +44,10 @@ public class EnemyMovement : MonoBehaviour
     {   
         if (!isDying && !isStopped)
         {
-            MoveTowardsPlayer();
+            if (!playerStats.isDead)
+            {
+                MoveTowardsPlayer();
+            }
             UpdateAnimation();
             FlipSprite();
         }
@@ -77,32 +82,66 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    // public void HandleDeath()
+    // {        
+    //     isDying = true;
+    //     this.enabled = false;  // Stop movement immediately
+    //     animator.SetBool("IsDead", true);
+    //     animator.SetFloat("Speed", 0);
+    //     dropManager.TryDropPowerup(transform.position);
+    //     StartCoroutine(FadeOutAndDestroy());
+    // }
+
     public void HandleDeath()
     {
+        if (isDying) return;
+        
         isDying = true;
-        animator.SetBool("IsDead", true); // Set IsDead in the Animator
-        animator.SetFloat("Speed", 0);    // Stop movement animations
-        if (dropManager != null)
-        {
-            dropManager.TryDropPowerup(transform.position);
-        }
+        this.enabled = false;
+        animator.SetFloat("Speed", 0);
+        
+        // Handle powerup drops
+        dropManager.TryDropPowerup(transform.position);
+    
+        // Start fade out after death animation is complete
         StartCoroutine(FadeOutAndDestroy());
     }
+
+    // IEnumerator FadeOutAndDestroy()
+    // {
+    //     SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+    //     Color originalColor = spriteRenderer.color;
+    //     float fadeAmount;
+
+    //     for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+    //     {
+    //         fadeAmount = 1 - (t / fadeDuration);
+    //         spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, fadeAmount);
+    //         yield return null;
+    //     }
+
+    //     spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
+    //     Destroy(gameObject);
+    // }
 
     IEnumerator FadeOutAndDestroy()
     {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        Color originalColor = spriteRenderer.color;
-        float fadeAmount;
-
-        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        if (spriteRenderer != null)
         {
-            fadeAmount = 1 - (t / fadeDuration);
-            spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, fadeAmount);
-            yield return null;
-        }
+            Color originalColor = spriteRenderer.color;
+            float fadeAmount;
 
-        spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
+            for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+            {
+                fadeAmount = 1 - (t / fadeDuration);
+                spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, fadeAmount);
+                yield return null;
+            }
+
+            spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
+        }
+        
         Destroy(gameObject);
     }
 }

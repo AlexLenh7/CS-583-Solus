@@ -9,5 +9,12 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadSceneAsync("Level");
+        Debug.Log("Loading Level Success");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+        Debug.Log("Quit successful");
     }
 }

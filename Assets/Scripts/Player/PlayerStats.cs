@@ -9,6 +9,7 @@ public class PlayerStats : MonoBehaviour
     public bool isDead = false;
     public Animator animator;
     private PlayerMovement playerMovement;
+    [SerializeField] private AudioClip HurtSoundClip;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class PlayerStats : MonoBehaviour
 
         // Trigger hurt animation based on current movement direction
         animator.SetTrigger("Hurt");
+        SoundFXManager.instance.PlaySoundFXClip(HurtSoundClip, transform, .5f);
 
         // Use the player's movement direction for hurt animation facing
         if (playerMovement != null && playerMovement.moveDirection.sqrMagnitude > 0.01f)
@@ -55,7 +57,7 @@ public class PlayerStats : MonoBehaviour
     void Die()
     {
         Debug.Log("Player has died.");
-
+        isDead = true;
         animator.SetBool("isDead", true);
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<Collider2D>().enabled = false;

@@ -187,6 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1518990187635611788}
   maxHealth: 100
+  damageSoundClip: {fileID: 8300000, guid: 3dff6013f7a201b4185502d9d62e5cba, type: 3}
   initialMaxHealth: 0
 --- !u!114 &5738518602206113654
 MonoBehaviour:

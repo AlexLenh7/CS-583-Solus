@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public float dashLength = 0.5f, dashCooldown = 1f;
 
     private float dashCounter;
-    private float dashCoolCounter;
+    public float dashCoolCounter;
 
     // New variables for dash invulnerability
     private bool isDashing = false;
@@ -30,8 +30,31 @@ public class PlayerMovement : MonoBehaviour
     private int initialCollisionLayer;
     private PlayerStats playerStats; // Reference to player stats if you have one
 
+    public GameManager gameManager;
+
+    private TrailRenderer trailRenderer;
+    
+    // Ghost Trail variables
+    public float ghostTrailInterval = 0.05f; // How often to spawn ghost images
+    public float ghostTrailDuration = 0.3f; // How long each ghost image lasts
+    public Color ghostTrailColor = new Color(1f, 1f, 1f, 0.5f); // Ghost image color/transparency
+    private bool isCreatingGhostTrail = false;
+    private SpriteRenderer playerSprite;
+
+    public DashBar dashBar;
+
+    [SerializeField] private AudioClip DeathSoundClip;
+    [SerializeField] private AudioClip DodgeSoundClip;
+
     void Start()
     {
+        trailRenderer = GetComponent<TrailRenderer>();
+        if (trailRenderer != null)
+        {
+            trailRenderer.enabled = false; // Disable on start
+        }
+
+        playerSprite = GetComponent<SpriteRenderer>();
         activeMoveSpeed = moveSpeed; // Set initial move speed
         initialCollisionLayer = gameObject.layer;
         playerStats = GetComponent<PlayerStats>();
@@ -49,9 +72,21 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("Vertical", moveDirection.y);
             animator.SetFloat("Speed", moveDirection.sqrMagnitude);
 
+            if (dashCoolCounter > 0)
+            {
+                dashCoolCounter -= Time.deltaTime;
+                if (dashBar != null)
+                {
+                    // Update the dash bar fill amount
+                    float fillAmount = 1 - (dashCoolCounter / dashCooldown);
+                    dashBar.SetFill(fillAmount);
+                }
+            }
+
             if (Input.GetKeyDown(KeyCode.Space) && dashCoolCounter <= 0 && dashCounter <= 0)
             {
                 StartDash();
+                SoundFXManager.instance.PlaySoundFXClip(DodgeSoundClip, transform, .5f);
             }
 
             // Handle dash duration and reset speed
@@ -89,12 +124,67 @@ public class PlayerMovement : MonoBehaviour
         isDashing = true;
         activeMoveSpeed = dashSpeed;
         dashCounter = dashLength;
+
+        if (dashBar != null)
+        {
+            dashBar.SetFill(0f);
+        }
         
+        if (trailRenderer != null)
+        {
+            trailRenderer.enabled = true;
+        }
+
+        if (!isCreatingGhostTrail)
+        {
+            StartCoroutine(CreateGhostTrail());
+        }
+
         // Ignore collisions with enemies during dash
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemies"), true);
-        
-        // Optional: Add visual feedback for dash
-        StartCoroutine(DashEffect());
+    }
+
+    IEnumerator CreateGhostTrail()
+    {
+        isCreatingGhostTrail = true;
+
+        while (isDashing)
+        {
+            GameObject ghost = new GameObject("GhostTrail");
+            ghost.transform.position = transform.position;
+            ghost.transform.rotation = transform.rotation;
+            ghost.transform.localScale = transform.localScale;
+
+            SpriteRenderer ghostSprite = ghost.AddComponent<SpriteRenderer>();
+            ghostSprite.sprite = playerSprite.sprite;
+            ghostSprite.sortingOrder = playerSprite.sortingOrder;
+            ghostSprite.color = ghostTrailColor;
+
+            StartCoroutine(FadeOutGhost(ghost, ghostSprite));
+
+            yield return new WaitForSeconds(ghostTrailInterval);
+        }
+
+        isCreatingGhostTrail = false;
+    }
+
+    IEnumerator FadeOutGhost(GameObject ghost, SpriteRenderer ghostSprite)
+    {
+        Color startColor = ghostSprite.color;
+        Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
+        float elapsedTime = 0f;
+
+        while (elapsedTime < ghostTrailDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float normalizedTime = elapsedTime / ghostTrailDuration;
+            
+            ghostSprite.color = Color.Lerp(startColor, endColor, normalizedTime);
+            
+            yield return null;
+        }
+
+        Destroy(ghost);
     }
 
     void EndDash()
@@ -103,6 +193,11 @@ public class PlayerMovement : MonoBehaviour
         activeMoveSpeed = moveSpeed;
         dashCoolCounter = dashCooldown;
         
+        if (trailRenderer != null)
+        {
+            trailRenderer.enabled = false;
+        }
+
         // Re-enable collisions with enemies
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemies"), false);
     }
@@ -147,11 +242,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleDeath()
     {
+        SoundFXManager.instance.PlaySoundFXClip(DeathSoundClip, transform, .5f);
         isDying = true;
         StopMovement();
         animator.SetBool("isDead", true); // Set IsDead in the Animator
         animator.SetFloat("Speed", 0);    // Stop movement animations
+        dashBar.Hide();
         StartCoroutine(FadeOutAndDestroy());
+        gameManager.gameOver();
     }
 
     IEnumerator FadeOutAndDestroy()
@@ -171,7 +269,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
-        Destroy(gameObject);
+        //gameObject.SetActive(false);
     }
 
     // void UpdateAttackPointPosition()

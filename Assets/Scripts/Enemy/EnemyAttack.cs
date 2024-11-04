@@ -15,9 +15,11 @@ public class EnemyAttack : MonoBehaviour
     public PolygonCollider2D attackCollider;
     private float lastAttackTime;
     private bool isAttackAnimationPlaying;
+    private PlayerStats playerStats;
 
     void Start()
     {
+        playerStats = FindObjectOfType<PlayerStats>();
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
         animator = GetComponent<Animator>();
@@ -40,7 +42,10 @@ public class EnemyAttack : MonoBehaviour
         
         if (distanceToPlayer <= attackRange)
         {
-            StartCoroutine(PerformAttack());
+            if (!playerStats.isDead)
+            {
+                StartCoroutine(PerformAttack());
+            }
         }
     }
 

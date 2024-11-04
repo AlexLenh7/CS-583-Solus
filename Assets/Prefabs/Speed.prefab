@@ -175,3 +175,4 @@ MonoBehaviour:
   speedIncrease: 0.1
   damageIncrease: 10
   maxHealthIncrease: 20
+  PowerUpSoundClip: {fileID: 8300000, guid: 9f4303fb905db694fb4e311b1e4e7e3f, type: 3}

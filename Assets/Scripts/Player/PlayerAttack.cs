@@ -7,7 +7,6 @@ public class PlayerAttack : MonoBehaviour
     public Animator animator;
     public LayerMask enemyLayers;
     private PlayerMovement playerMovement;
-    public Transform attackPoint;
     private PolygonCollider2D attackCollider;
 
     public Transform attackColliderRight;
@@ -17,6 +16,8 @@ public class PlayerAttack : MonoBehaviour
 
     public float attackStagger = 0.2f;
     public int attackDamage = 20;
+
+    [SerializeField] private AudioClip AttackSoundClip;
 
     void Start()
     {
@@ -57,6 +58,7 @@ public class PlayerAttack : MonoBehaviour
             foreach (Collider2D enemy in hitEnemies)
             {
                 enemy.GetComponent<EnemyStats>()?.TakeDamage(attackDamage);
+                SoundFXManager.instance.PlaySoundFXClip(AttackSoundClip, transform, .5f);
             }
         }
         // else

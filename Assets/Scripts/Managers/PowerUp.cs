@@ -15,6 +15,7 @@ public class PowerUp : MonoBehaviour
     public float speedIncrease = 0.1f;
     public int damageIncrease = 10;
     public int maxHealthIncrease = 20;
+    [SerializeField] private AudioClip PowerUpSoundClip;
 
     private void Start()
     {
@@ -34,6 +35,7 @@ public class PowerUp : MonoBehaviour
         {
             //Debug.Log($"Player collected powerup of type: {type}");
             ApplyPowerup(other.gameObject);
+            SoundFXManager.instance.PlaySoundFXClip(PowerUpSoundClip, transform, .5f);
             Destroy(gameObject);
         }
     }
