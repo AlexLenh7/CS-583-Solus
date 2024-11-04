@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 240386666}
   - component: {fileID: 240386667}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Attack down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,19 +256,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.19879536, y: 0.09064328}
-      - {x: 0.15518582, y: 0.17720255}
+    - - {x: 0.21108207, y: 0.04624097}
+      - {x: 0.20353965, y: 0.105469294}
+      - {x: 0.17179096, y: 0.18194687}
       - {x: 0.12356742, y: 0.1521897}
       - {x: 0.07368875, y: 0.14081961}
       - {x: 0.009556122, y: 0.13849814}
       - {x: -0.07214594, y: 0.14285532}
-      - {x: -0.14316991, y: 0.15435919}
-      - {x: -0.18192124, y: 0.067727745}
-      - {x: -0.15596539, y: -0.035494924}
-      - {x: -0.055407703, y: -0.12562418}
-      - {x: 0.0576295, y: -0.13391876}
-      - {x: 0.1449207, y: -0.08015813}
-      - {x: 0.19205967, y: -0.0062274635}
+      - {x: -0.16926369, y: 0.15910351}
+      - {x: -0.19378209, y: 0.07009991}
+      - {x: -0.19303378, y: -0.074261814}
+      - {x: -0.12012683, y: -0.16534802}
+      - {x: -0.034109887, y: -0.20904979}
+      - {x: 0.06406994, y: -0.20837544}
+      - {x: 0.16821453, y: -0.13922317}
+      - {x: 0.20049146, y: -0.07945396}
+      - {x: 0.20971623, y: -0.0267144}
   m_UseDelaunayMesh: 0
 --- !u!1 &244391908
 GameObject:
@@ -311,7 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 299645989}
   - component: {fileID: 299645990}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Attack left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,13 +385,16 @@ PolygonCollider2D:
       - {x: -0.06794888, y: -0.04596372}
       - {x: -0.07830191, y: -0.010675298}
       - {x: -0.108429685, y: 0.029369153}
-      - {x: -0.31037658, y: 0.035597887}
-      - {x: -0.4826861, y: -0.035614014}
-      - {x: -0.497096, y: -0.10322827}
-      - {x: -0.439763, y: -0.17260738}
-      - {x: -0.25077778, y: -0.23084264}
-      - {x: -0.07063925, y: -0.22274834}
-      - {x: 0.09280604, y: -0.11481026}
+      - {x: -0.13261773, y: 0.059659813}
+      - {x: -0.3115596, y: 0.058310833}
+      - {x: -0.40601075, y: 0.025357611}
+      - {x: -0.48575497, y: -0.049255725}
+      - {x: -0.4834991, y: -0.11685928}
+      - {x: -0.42385495, y: -0.17577188}
+      - {x: -0.30511957, y: -0.21630873}
+      - {x: -0.0696342, y: -0.22226436}
+      - {x: 0.05676435, y: -0.1824326}
+      - {x: 0.11995804, y: -0.10682438}
   m_UseDelaunayMesh: 0
 --- !u!1 &519420028
 GameObject:
@@ -785,7 +791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1049973580}
   - component: {fileID: 1049973581}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Attack right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -851,18 +857,24 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.12177536, y: 0.03870678}
+    - - {x: 0.104718134, y: 0.05763348}
       - {x: 0.092338175, y: -0.016020123}
       - {x: 0.064073145, y: -0.052656375}
       - {x: 0.036598176, y: -0.09962035}
       - {x: -0.032110304, y: -0.112788506}
-      - {x: -0.09168953, y: -0.11804712}
-      - {x: -0.023771733, y: -0.189241}
-      - {x: 0.1335515, y: -0.2271217}
-      - {x: 0.3447759, y: -0.21250956}
-      - {x: 0.48636287, y: -0.13816518}
-      - {x: 0.486076, y: -0.059689336}
-      - {x: 0.36635825, y: 0.03165949}
+      - {x: -0.1200583, y: -0.11268005}
+      - {x: -0.06744349, y: -0.17531376}
+      - {x: 0.03225509, y: -0.21280824}
+      - {x: 0.12600492, y: -0.2240493}
+      - {x: 0.26286307, y: -0.21993081}
+      - {x: 0.3406323, y: -0.20670626}
+      - {x: 0.41997245, y: -0.17897788}
+      - {x: 0.46638548, y: -0.14151052}
+      - {x: 0.48329043, y: -0.11527866}
+      - {x: 0.4830036, y: -0.05582416}
+      - {x: 0.44141275, y: -0.0059552253}
+      - {x: 0.38696125, y: 0.033299714}
+      - {x: 0.30182734, y: 0.05653618}
   m_UseDelaunayMesh: 0
 --- !u!1 &1108697246
 GameObject:
@@ -874,7 +886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1108697247}
   - component: {fileID: 1108697248}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Attack up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -940,21 +952,71 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.116245955, y: 0.28690922}
-      - {x: 0.045731902, y: 0.3152406}
-      - {x: -0.047244493, y: 0.31461203}
-      - {x: -0.11665343, y: 0.28035676}
-      - {x: -0.18279666, y: 0.18695544}
-      - {x: -0.18401131, y: 0.08816844}
-      - {x: -0.14504124, y: 0.0480372}
+    - - {x: 0.17329954, y: 0.24784234}
+      - {x: 0.12899375, y: 0.2987256}
+      - {x: 0.055879526, y: 0.34153485}
+      - {x: -0.058274467, y: 0.33997488}
+      - {x: -0.13083747, y: 0.29512}
+      - {x: -0.16068968, y: 0.26462457}
+      - {x: -0.2017265, y: 0.1885045}
+      - {x: -0.1995048, y: 0.08884208}
+      - {x: -0.16929191, y: 0.019744769}
       - {x: -0.07924377, y: 0.055928938}
       - {x: -0.021297418, y: 0.06882435}
       - {x: 0.04704921, y: 0.06779127}
       - {x: 0.10145163, y: 0.061735265}
-      - {x: 0.16238725, y: 0.03263122}
-      - {x: 0.1946027, y: 0.09205228}
-      - {x: 0.19159964, y: 0.17884582}
+      - {x: 0.16777626, y: 0.005686015}
+      - {x: 0.2050894, y: 0.08835113}
+      - {x: 0.20455378, y: 0.17946269}
   m_UseDelaunayMesh: 0
+--- !u!1 &1250113131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1250113133}
+  - component: {fileID: 1250113132}
+  m_Layer: 0
+  m_Name: PowerUpManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1250113132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250113131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d66bf7c25210b6145bff06f9cf21068a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedPowerupPrefab: {fileID: 2653121913148626777, guid: c3e92716382acf243bd5219a89204f75, type: 3}
+  damagePowerupPrefab: {fileID: 7860132375838491508, guid: efd6557fe16ccee42bd8a34ec8be7b30, type: 3}
+  healthPowerupPrefab: {fileID: 9152483102938642081, guid: 8cfbe93e0213899458806890bfc7160c, type: 3}
+  dropChance: 0.3
+--- !u!4 &1250113133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250113131}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1276422052
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,6 +1027,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1276422054}
   - component: {fileID: 1276422053}
+  - component: {fileID: 1276422055}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -1007,6 +1070,33 @@ Transform:
   - {fileID: 1043368005}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1276422055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276422052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf75e814dd8af8a4dacea1308362c930, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficultyIncreaseInterval: 60
+  maxDifficultyTime: 300
+  healthIncreasePerLevel: 20
+  damageIncreasePerLevel: 20
+  speedIncreasePerLevel: 0.05
+  gameTimer: 0
+  currentDifficultyLevel: 0
+  maxDifficultyLevel: 0
+  difficultyColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.007199899, g: 0.78113204, b: 0, a: 1}
+  - {r: 0, g: 0.6, b: 1, a: 1}
+  - {r: 1, g: 0.60229635, b: 0.015686274, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.38455915, g: 0, b: 1, a: 1}
 --- !u!1 &1343172172 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1515848026628747033, guid: 5058a13d7a70a6c47aa5cc4481bf286f, type: 3}
@@ -1051,7 +1141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bab465cbe856c14cb255ae63caefbb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 0.6
   rb: {fileID: 1343172173}
   moveDirection: {x: 0, y: 0}
   animator: {fileID: 1343172177}
@@ -1059,6 +1149,12 @@ MonoBehaviour:
   canMove: 1
   isDying: 0
   fadeDuration: 1
+  dashSpeed: 2
+  dashLength: 0.5
+  dashCooldown: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!95 &1343172177 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: -1874479790924497287, guid: 5058a13d7a70a6c47aa5cc4481bf286f, type: 3}
@@ -1104,8 +1200,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.0153428465}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.49, y: 0.46}
-    oldSize: {x: 0.4, y: 0.4}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.4, y: 0.8}
     newSize: {x: 0.4, y: 0.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1184,7 +1280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7d782e86ade3347986adca2169bf1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 100
   currentHealth: 0
   isDead: 0
   animator: {fileID: 1343172177}
@@ -1655,6 +1751,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1515848026628747033, guid: 5058a13d7a70a6c47aa5cc4481bf286f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4425672937154865303, guid: 5058a13d7a70a6c47aa5cc4481bf286f, type: 3}
       propertyPath: rb
       value: 
@@ -1666,14 +1766,14 @@ PrefabInstance:
     - target: {fileID: 5274434832769443473, guid: 5058a13d7a70a6c47aa5cc4481bf286f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 264602359, guid: 49a738187aa06c7478d58520fdb3363c, type: 3}
+      objectReference: {fileID: 1738284231, guid: a2fe6ce3567573b42a5a83ba4a3bca5a, type: 3}
     - target: {fileID: 5274434832769443473, guid: 5058a13d7a70a6c47aa5cc4481bf286f, type: 3}
       propertyPath: m_SortingLayer
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5274434832769443473, guid: 5058a13d7a70a6c47aa5cc4481bf286f, type: 3}
       propertyPath: m_SortingOrder
-      value: 15
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5274434832769443473, guid: 5058a13d7a70a6c47aa5cc4481bf286f, type: 3}
       propertyPath: m_SortingLayerID
@@ -2736,3 +2836,4 @@ SceneRoots:
   - {fileID: 1276422054}
   - {fileID: 2013068503}
   - {fileID: 824552216}
+  - {fileID: 1250113133}

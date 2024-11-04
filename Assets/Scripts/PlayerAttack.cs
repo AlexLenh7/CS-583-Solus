@@ -32,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         // Check for attack input
-        if (Input.GetKeyDown(KeyCode.Space) && playerMovement.canMove)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && playerMovement.canMove)
         {
             TriggerAttack();
         }
@@ -59,10 +59,10 @@ public class PlayerAttack : MonoBehaviour
                 enemy.GetComponent<EnemyStats>()?.TakeDamage(attackDamage);
             }
         }
-        else
-        {
-            Debug.LogWarning("No active collider found for the attack direction.");
-        }
+        // else
+        // {
+        //     Debug.LogWarning("No active collider found for the attack direction.");
+        // }
 
         // Disable colliders after the attack
         DisableAllAttackColliders();
@@ -76,22 +76,22 @@ public class PlayerAttack : MonoBehaviour
         if (playerMovement.lastMoveDirection == Vector2.right)
         {
             attackColliderRight.gameObject.SetActive(true);
-            Debug.Log("Attack Collider Right activated.");
+            //Debug.Log("Attack Collider Right activated.");
         }
         else if (playerMovement.lastMoveDirection == Vector2.left)
         {
             attackColliderLeft.gameObject.SetActive(true);
-            Debug.Log("Attack Collider Left activated.");
+            //Debug.Log("Attack Collider Left activated.");
         }
         else if (playerMovement.lastMoveDirection == Vector2.up)
         {
             attackColliderUp.gameObject.SetActive(true);
-            Debug.Log("Attack Collider Up activated.");
+            //Debug.Log("Attack Collider Up activated.");
         }
         else if (playerMovement.lastMoveDirection == Vector2.down)
         {
             attackColliderDown.gameObject.SetActive(true);
-            Debug.Log("Attack Collider Down activated.");
+            //Debug.Log("Attack Collider Down activated.");
         }
     }
 
@@ -107,7 +107,7 @@ public class PlayerAttack : MonoBehaviour
 
     void DisableAllAttackColliders()
     {
-        Debug.Log("Disabling all attack colliders.");
+        //Debug.Log("Disabling all attack colliders.");
         attackColliderRight.gameObject.SetActive(false);
         attackColliderLeft.gameObject.SetActive(false);
         attackColliderUp.gameObject.SetActive(false);

@@ -8,8 +8,21 @@ public class EnemyStats : MonoBehaviour
     public int maxHealth = 100;
     int currentHealth;
 
+    public int initialMaxHealth;
+    void Awake()
+    {
+        // Store the initial max health for reference
+        initialMaxHealth = maxHealth;
+        //dropManager = FindObjectOfType<PowerUpManager>();
+    }
+    
     // Start is called before the first frame update
     void Start()
+    {
+        currentHealth = maxHealth;
+    }
+
+    public void InitializeHealth()
     {
         currentHealth = maxHealth;
     }
@@ -18,7 +31,7 @@ public class EnemyStats : MonoBehaviour
     {
         currentHealth -= damage;
 
-        animator.SetTrigger("Hurt");
+        animator.Play("Undead_hurt", -1, 0f);
 
         if(currentHealth <= 0)
         {
@@ -32,7 +45,11 @@ public class EnemyStats : MonoBehaviour
 
         animator.SetBool("IsDead", true);
 
-        GetComponent<Collider2D>().enabled = false;
+        Collider2D[] colliders = GetComponents<Collider2D>();
+        foreach (Collider2D collider in colliders)
+        {
+            collider.enabled = false;
+        }
         GetComponent<EnemyMovement>().enabled = false;
         this.enabled = false;
 

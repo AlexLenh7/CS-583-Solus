@@ -12,8 +12,10 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 moveDirection;
 
     private bool isDying = false;
+    private bool isStopped = false;
     public float fadeDuration = 1f;
     
+    private PowerUpManager dropManager;
     // Start is called before the first frame update
 
     void Start()
@@ -21,10 +23,24 @@ public class EnemyMovement : MonoBehaviour
         player = FindObjectOfType<PlayerMovement>().transform;
     }
 
+    void Awake()
+    {
+        dropManager = FindObjectOfType<PowerUpManager>();
+    }
+
+    public void StopMovement()
+    {
+        isStopped = true;
+    }
+
+    public void ResumeMovement()
+    {
+        isStopped = false;
+    }
 
     void Update()
     {   
-        if (!isDying)
+        if (!isDying && !isStopped)
         {
             MoveTowardsPlayer();
             UpdateAnimation();
@@ -66,6 +82,10 @@ public class EnemyMovement : MonoBehaviour
         isDying = true;
         animator.SetBool("IsDead", true); // Set IsDead in the Animator
         animator.SetFloat("Speed", 0);    // Stop movement animations
+        if (dropManager != null)
+        {
+            dropManager.TryDropPowerup(transform.position);
+        }
         StartCoroutine(FadeOutAndDestroy());
     }
 

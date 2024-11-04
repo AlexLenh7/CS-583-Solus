@@ -18,6 +18,8 @@ public class EnemySpawner : MonoBehaviour
     public int checkPerFrame;
     private int enemyToCheck;
 
+    private DifficultyManager difficultyManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,12 @@ public class EnemySpawner : MonoBehaviour
         target = FindObjectOfType<PlayerMovement>().transform;
 
         despawnDistance = Vector3.Distance(transform.position, maxSpawn.position) + 4f;
+
+        difficultyManager = GetComponent<DifficultyManager>();
+        if (difficultyManager == null)
+        {
+            difficultyManager = gameObject.AddComponent<DifficultyManager>();
+        }
     }
 
     // Update is called once per frame
@@ -38,6 +46,7 @@ public class EnemySpawner : MonoBehaviour
 
             // Instantiate(enemyToSpawn, transform.position, transform.rotation);
             GameObject newEnemy = Instantiate(enemyToSpawn, SelectSpawnPoint(), transform.rotation);
+            difficultyManager.ApplyDifficultyToEnemy(newEnemy);
 
             spawnedEnemies.Add(newEnemy);
         }

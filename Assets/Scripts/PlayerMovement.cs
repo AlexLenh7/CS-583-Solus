@@ -15,6 +15,27 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isDying = false;
     public float fadeDuration = 1f;
+
+    private float activeMoveSpeed;
+    public float dashSpeed = 5f;
+
+    public float dashLength = 0.5f, dashCooldown = 1f;
+
+    private float dashCounter;
+    private float dashCoolCounter;
+
+    // New variables for dash invulnerability
+    private bool isDashing = false;
+    public LayerMask enemyLayer; // Assign the enemy layer in the Unity Inspector
+    private int initialCollisionLayer;
+    private PlayerStats playerStats; // Reference to player stats if you have one
+
+    void Start()
+    {
+        activeMoveSpeed = moveSpeed; // Set initial move speed
+        initialCollisionLayer = gameObject.layer;
+        playerStats = GetComponent<PlayerStats>();
+    }
     
     void Update()
     {
@@ -28,6 +49,27 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("Vertical", moveDirection.y);
             animator.SetFloat("Speed", moveDirection.sqrMagnitude);
 
+            if (Input.GetKeyDown(KeyCode.Space) && dashCoolCounter <= 0 && dashCounter <= 0)
+            {
+                StartDash();
+            }
+
+            // Handle dash duration and reset speed
+            if (dashCounter > 0)
+            {
+                dashCounter -= Time.deltaTime;
+                if (dashCounter <= 0)
+                {
+                    EndDash();
+                }
+            }
+
+            // Handle dash cooldown countdown
+            if (dashCoolCounter > 0)
+            {
+                dashCoolCounter -= Time.deltaTime;
+            }
+
             // Update last move direction
             if (moveDirection.sqrMagnitude > 0.01f)
             {
@@ -35,9 +77,6 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetFloat("LastHorizontal", lastMoveDirection.x);
                 animator.SetFloat("LastVertical", lastMoveDirection.y);
             }
-
-            // Update attackPoint position based on lastMoveDirection
-            //UpdateAttackPointPosition();
         }
         else
         {
@@ -45,11 +84,53 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void StartDash()
+    {
+        isDashing = true;
+        activeMoveSpeed = dashSpeed;
+        dashCounter = dashLength;
+        
+        // Ignore collisions with enemies during dash
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemies"), true);
+        
+        // Optional: Add visual feedback for dash
+        StartCoroutine(DashEffect());
+    }
+
+    void EndDash()
+    {
+        isDashing = false;
+        activeMoveSpeed = moveSpeed;
+        dashCoolCounter = dashCooldown;
+        
+        // Re-enable collisions with enemies
+        Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemies"), false);
+    }
+
+    IEnumerator DashEffect()
+    {
+        // Optional: Add trail effect or other visual feedback during dash
+        // You could enable a TrailRenderer here if you have one
+
+        float elapsed = 0f;
+        while (elapsed < dashLength)
+        {
+            elapsed += Time.deltaTime;
+            // You could add additional visual effects here
+            yield return null;
+        }
+    }
+
+    public bool IsDashing
+    {
+        get { return isDashing; }
+    }
+
     void FixedUpdate() 
     {
         if (canMove)
         {
-            rb.velocity = moveDirection * moveSpeed;
+            rb.velocity = moveDirection * activeMoveSpeed;
         } 
         else
         {

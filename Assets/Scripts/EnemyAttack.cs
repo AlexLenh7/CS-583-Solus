@@ -76,7 +76,6 @@ public class EnemyAttack : MonoBehaviour
         {
             attackCollider.enabled = true;
             
-            // Check for player in range when enabling collider
             Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(
                 attackCollider.bounds.center,
                 attackCollider.bounds.extents.magnitude,
@@ -85,17 +84,17 @@ public class EnemyAttack : MonoBehaviour
 
             foreach (Collider2D playerCollider in hitPlayers)
             {
-                // Check if the collider is set to interact with the enemy layer
                 if ((playerLayer.value & (1 << playerCollider.gameObject.layer)) != 0 && playerCollider.CompareTag("Player"))
                 {
+                    PlayerMovement playerMovement = playerCollider.GetComponent<PlayerMovement>();
                     PlayerStats playerStats = playerCollider.GetComponent<PlayerStats>();
-                    if (playerStats != null)
+                    
+                    // Check if player is dashing before applying damage
+                    if (playerStats != null && (playerMovement == null || !playerMovement.IsDashing))
                     {
-                        //Vector2 attackDirection = (playerCollider.transform.position - transform.position).normalized;
-                        //playerStats.TakeDamage(attackDamage, attackDirection);
                         playerStats.TakeDamage(attackDamage);
                         Debug.Log($"Enemy dealt {attackDamage} damage to player");
-                        break; // Exit after hitting one valid collider to prevent double damage
+                        break;
                     }
                 }
             }

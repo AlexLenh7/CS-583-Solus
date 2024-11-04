@@ -14,9 +14,25 @@ public class HealthUI : MonoBehaviour
     
     private Image[] heartImages;
 
+    void Awake()
+    {
+        if (playerStats == null)
+        {
+            Debug.LogError("PlayerStats reference is missing in HealthUI.");
+            return;
+        }
+
+        InitializeHearts();
+    }
+
+
     void Start()
     {
-        InitializeHearts();
+        UpdateHeartDisplay();
+    }
+
+    void Update()
+    {
         UpdateHeartDisplay();
     }
 
@@ -48,13 +64,21 @@ public class HealthUI : MonoBehaviour
         // Update heart visibility
         for (int i = 0; i < maxHearts; i++)
         {
-            heartImages[i].gameObject.SetActive(i < heartsToShow);
+            if (heartImages[i] != null) // Null-check to avoid errors
+            {
+                heartImages[i].gameObject.SetActive(i < heartsToShow);
+            }
         }
     }
 
     // Call this method whenever the player's health changes
     public void OnHealthChanged()
     {
+        if (heartImages == null || heartImages.Length == 0)
+        {
+            Debug.LogWarning("HealthUI hearts are not initialized yet.");
+            return;
+        }
         UpdateHeartDisplay();
     }
 }

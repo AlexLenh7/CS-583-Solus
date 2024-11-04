@@ -18,7 +18,7 @@ public class ChunkTrigger : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             mc.currentChunk = targetMap;
-            Debug.Log("Current Chunk Set to: " + targetMap.name);
+            //Debug.Log("Current Chunk Set to: " + targetMap.name);
         }
         
     }
