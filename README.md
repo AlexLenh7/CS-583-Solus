@@ -34,7 +34,7 @@ A challenging top-down 2D survival game built with Unity and C# where players mu
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/game-repo-name.git
+git clone [https://github.com/AlexLenh7/CS-583-Solus.git]
 ```
 
 2. Requirements:
