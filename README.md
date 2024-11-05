@@ -20,10 +20,11 @@ A challenging top-down 2D survival game built with Unity and C# where players mu
 - **Scoring System**:
   - 10 points per second survived
   - 50 points per enemy defeated
-- **Custom Assets**:
+- **Assets**:
   - Original player sprite designs 
-  - Custom UI elements
-  - Modified enemy animations
+  - Custom made UI elements
+  - Modified enemy animations and colors (credits: AceWay & Darkeyed https://finalgatestudios.itch.io/undead-sprite-pack)
+  - Tilemap sprite designs from (https://opengameart.org/content/lpc-terrain-repack) 
 
 ## Installation
 
