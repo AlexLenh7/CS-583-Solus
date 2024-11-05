@@ -23,6 +23,7 @@ A challenging top-down 2D survival game built with Unity and C# where players mu
 - **Assets**:
   - Original player sprite designs 
   - Custom made UI elements
+  - Custom made powerup sprites
   - Modified enemy animations and colors (credits: AceWay & Darkeyed https://finalgatestudios.itch.io/undead-sprite-pack)
   - Tilemap sprite designs from (https://opengameart.org/content/lpc-terrain-repack) 
 
