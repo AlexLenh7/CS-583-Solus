@@ -1,11 +1,10 @@
 # Solus
 
+![image](https://github.com/user-attachments/assets/aab0d25e-8e7d-4bd6-a8d6-4db5b87a0d63)
+
 A challenging top-down 2D survival game built with Unity and C# where players must survive against increasingly difficult waves of enemies while collecting powerups and exploring an infinitely generating world.
 
-![image](https://github.com/user-attachments/assets/b808fd41-47fc-4141-9150-5bf05f393246)
 ![image](https://github.com/user-attachments/assets/a2413758-dfdd-4a38-babc-ccb12fc6094d)
-![image](https://github.com/user-attachments/assets/449b368e-9642-4fb6-9f3a-73752f454889)
-
 
 ## Features
 
