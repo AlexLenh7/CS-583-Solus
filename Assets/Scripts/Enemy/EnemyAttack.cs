@@ -17,6 +17,8 @@ public class EnemyAttack : MonoBehaviour
     private bool isAttackAnimationPlaying;
     private PlayerStats playerStats;
 
+    [SerializeField] private AudioClip attackSoundClip;
+
     void Start()
     {
         playerStats = FindObjectOfType<PlayerStats>();
@@ -77,6 +79,7 @@ public class EnemyAttack : MonoBehaviour
     // Called by animation event at the start of attack frames
     public void EnableAttackCollider()
     {
+        SoundFXManager.instance.PlaySoundFXClip(attackSoundClip, transform, .5f);
         if (attackCollider != null)
         {
             attackCollider.enabled = true;
@@ -115,21 +118,6 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
-    void OnDrawGizmos()
-    {
-        if (!showDebugGizmos) return;
-        
-        // Draw attack detection range
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-        
-        // Draw the actual attack collider area when it's enabled
-        if (attackCollider != null && attackCollider.enabled)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(attackCollider.bounds.center, attackCollider.bounds.size);
-        }
-    }
 }
 
 

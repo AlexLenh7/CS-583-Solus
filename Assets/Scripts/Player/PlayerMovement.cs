@@ -148,6 +148,8 @@ public class PlayerMovement : MonoBehaviour
     {
         isCreatingGhostTrail = true;
 
+        string playerSortingLayer = playerSprite.sortingLayerName;
+        
         while (isDashing)
         {
             GameObject ghost = new GameObject("GhostTrail");
@@ -157,7 +159,8 @@ public class PlayerMovement : MonoBehaviour
 
             SpriteRenderer ghostSprite = ghost.AddComponent<SpriteRenderer>();
             ghostSprite.sprite = playerSprite.sprite;
-            ghostSprite.sortingOrder = playerSprite.sortingOrder;
+            ghostSprite.sortingLayerName = playerSortingLayer;
+            ghostSprite.sortingOrder = playerSprite.sortingOrder - 1;
             ghostSprite.color = ghostTrailColor;
 
             StartCoroutine(FadeOutGhost(ghost, ghostSprite));

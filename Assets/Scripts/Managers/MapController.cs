@@ -122,28 +122,25 @@ public class MapController : MonoBehaviour
 
     void ChunkOptimizer()
     {
-        optimizerCooldown -= Time.deltaTime;
-        
-        if(optimizerCooldown <= 0f)
-        {
-            optimizerCooldown = optimizerCooldownDuration;
-        }
-        else
-        {
-            return;
-        }
-
         foreach (GameObject chunk in spawnedChunks)
         {
             opDist = Vector3.Distance(player.transform.position, chunk.transform.position);
-            if (opDist > maxOpDist)
+            bool shouldBeActive = opDist <= maxOpDist;
+            
+            if (chunk.activeSelf != shouldBeActive)
             {
-                chunk.SetActive(false);
+                // Add a small delay to prevent rapid toggling
+                StartCoroutine(ToggleChunkWithDelay(chunk, shouldBeActive));
             }
-            else
-            {
-                chunk.SetActive(true);
-            }
+        }
+    }
+
+    IEnumerator ToggleChunkWithDelay(GameObject chunk, bool active)
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (chunk != null)  // Safety check in case chunk was destroyed
+        {
+            chunk.SetActive(active);
         }
     }
 }

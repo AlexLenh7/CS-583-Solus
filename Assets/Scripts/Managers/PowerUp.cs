@@ -35,7 +35,7 @@ public class PowerUp : MonoBehaviour
         {
             //Debug.Log($"Player collected powerup of type: {type}");
             ApplyPowerup(other.gameObject);
-            SoundFXManager.instance.PlaySoundFXClip(PowerUpSoundClip, transform, .5f);
+            SoundFXManager.instance.PlaySoundFXClip(PowerUpSoundClip, transform, .3f);
             Destroy(gameObject);
         }
     }
