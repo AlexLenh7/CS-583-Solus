@@ -21,6 +21,9 @@ A challenging top-down 2D survival game built with Unity and C# where players mu
   - 10 points per second survived
   - 50 points per enemy defeated
 - **Assets**:
+  - Sound designs
+    - Enemy hit, Enemy hurt, Player death, Player hurt made using https://sfbgames.itch.io/chiptone
+    - Dash/Dodge 1st note taken from UI Goku, Enemy and Player attack taken from online swoosh sound effect, Power Up sound taken from https://uppbeat.io/sfx/tag/power-up 
   - Original player sprite designs 
   - Custom made UI elements
   - Custom made powerup sprites
