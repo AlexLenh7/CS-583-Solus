@@ -13,6 +13,7 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
+        // find health UI object
         healthUI = FindObjectOfType<HealthUI>();
         currentHealth = maxHealth;
         playerMovement = GetComponent<PlayerMovement>();

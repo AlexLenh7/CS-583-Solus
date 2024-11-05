@@ -44,7 +44,7 @@ public class EnemyMovement : MonoBehaviour
     {   
         if (!isDying && !isStopped)
         {
-            if (!playerStats.isDead)
+            if (!playerStats.isDead) // stop movement if player is dead
             {
                 MoveTowardsPlayer();
             }
@@ -82,23 +82,13 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    // public void HandleDeath()
-    // {        
-    //     isDying = true;
-    //     this.enabled = false;  // Stop movement immediately
-    //     animator.SetBool("IsDead", true);
-    //     animator.SetFloat("Speed", 0);
-    //     dropManager.TryDropPowerup(transform.position);
-    //     StartCoroutine(FadeOutAndDestroy());
-    // }
-
     public void HandleDeath()
     {
         if (isDying) return;
         
         isDying = true;
-        this.enabled = false;
         animator.SetFloat("Speed", 0);
+        this.enabled = false; //stop movement
         
         // Handle powerup drops
         dropManager.TryDropPowerup(transform.position);
@@ -107,23 +97,7 @@ public class EnemyMovement : MonoBehaviour
         StartCoroutine(FadeOutAndDestroy());
     }
 
-    // IEnumerator FadeOutAndDestroy()
-    // {
-    //     SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-    //     Color originalColor = spriteRenderer.color;
-    //     float fadeAmount;
-
-    //     for (float t = 0; t < fadeDuration; t += Time.deltaTime)
-    //     {
-    //         fadeAmount = 1 - (t / fadeDuration);
-    //         spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, fadeAmount);
-    //         yield return null;
-    //     }
-
-    //     spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
-    //     Destroy(gameObject);
-    // }
-
+    // Fade out and destroy enemy game object at the end of animation
     IEnumerator FadeOutAndDestroy()
     {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();

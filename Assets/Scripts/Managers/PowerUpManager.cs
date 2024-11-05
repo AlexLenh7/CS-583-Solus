@@ -8,7 +8,7 @@ public class PowerUpManager : MonoBehaviour
     public GameObject damagePowerupPrefab;
     public GameObject healthPowerupPrefab;
     [Range(0f, 1f)]
-    public float dropChance = 0.3f;     // 30% chance to drop
+    public float dropChance = 0.3f; // change in editor
 
     public void TryDropPowerup(Vector3 position)
     {
@@ -16,6 +16,7 @@ public class PowerUpManager : MonoBehaviour
 
         Debug.Log($"Drop Roll: {roll}, Drop Chance: {dropChance}");
 
+        // return nothing if there is no drop
         if (roll > dropChance)
         {
             return;
@@ -24,6 +25,7 @@ public class PowerUpManager : MonoBehaviour
         float powerupRoll = Random.value;
         Debug.Log($"Powerup Type Roll: {powerupRoll}");
 
+        // calculate each powerup rate 33 percent chance for each
         if (powerupRoll <= .33f)
         {
             Instantiate(speedPowerupPrefab, position, Quaternion.identity);

@@ -8,8 +8,6 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Vector2 moveDirection;
     public Animator animator;
-    // public Transform attackPoint; // Reference to attackPoint
-    // public float attackPointOffset = 0.5f; // Distance to offset attackPoint
     [HideInInspector] public Vector2 lastMoveDirection;
     public bool canMove = true;
 
@@ -26,9 +24,9 @@ public class PlayerMovement : MonoBehaviour
 
     // New variables for dash invulnerability
     private bool isDashing = false;
-    public LayerMask enemyLayer; // Assign the enemy layer in the Unity Inspector
+    public LayerMask enemyLayer; 
     private int initialCollisionLayer;
-    private PlayerStats playerStats; // Reference to player stats if you have one
+    private PlayerStats playerStats; 
 
     public GameManager gameManager;
 
@@ -62,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
+        // check if to see if player can move and isn't dead
         if (canMove && !isDying)
         {
             float moveX = Input.GetAxisRaw("Horizontal");
@@ -125,6 +124,7 @@ public class PlayerMovement : MonoBehaviour
         activeMoveSpeed = dashSpeed;
         dashCounter = dashLength;
 
+        // set dash UI bar at start of dash
         if (dashBar != null)
         {
             dashBar.SetFill(0f);
@@ -144,12 +144,13 @@ public class PlayerMovement : MonoBehaviour
         Physics2D.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Enemies"), true);
     }
 
+    // create the ghost trail when dashing 
     IEnumerator CreateGhostTrail()
     {
         isCreatingGhostTrail = true;
 
         string playerSortingLayer = playerSprite.sortingLayerName;
-        
+
         while (isDashing)
         {
             GameObject ghost = new GameObject("GhostTrail");
@@ -171,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
         isCreatingGhostTrail = false;
     }
 
+    // create a ghosting effect that gets destroyed after a certain time
     IEnumerator FadeOutGhost(GameObject ghost, SpriteRenderer ghostSprite)
     {
         Color startColor = ghostSprite.color;
@@ -207,18 +209,15 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DashEffect()
     {
-        // Optional: Add trail effect or other visual feedback during dash
-        // You could enable a TrailRenderer here if you have one
-
         float elapsed = 0f;
         while (elapsed < dashLength)
         {
             elapsed += Time.deltaTime;
-            // You could add additional visual effects here
             yield return null;
         }
     }
 
+    // check to see if dashing
     public bool IsDashing
     {
         get { return isDashing; }
@@ -236,6 +235,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // call stop movement to stop player from moving instantly
     public void StopMovement()
     {
         canMove = false;
@@ -247,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
     {
         SoundFXManager.instance.PlaySoundFXClip(DeathSoundClip, transform, .5f);
         isDying = true;
-        StopMovement();
+        StopMovement(); 
         animator.SetBool("isDead", true); // Set IsDead in the Animator
         animator.SetFloat("Speed", 0);    // Stop movement animations
         dashBar.Hide();
@@ -255,6 +255,7 @@ public class PlayerMovement : MonoBehaviour
         gameManager.gameOver();
     }
 
+    // fade out player after death animation
     IEnumerator FadeOutAndDestroy()
     {
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
@@ -275,14 +276,6 @@ public class PlayerMovement : MonoBehaviour
         //gameObject.SetActive(false);
     }
 
-    // void UpdateAttackPointPosition()
-    // {
-    //     if (attackPoint != null && lastMoveDirection != Vector2.zero)
-    //     {
-    //         // Position attackPoint a certain distance from the player in the direction of lastMoveDirection
-    //         attackPoint.localPosition = lastMoveDirection * attackPointOffset;
-    //     }
-    // }
 }
 
 

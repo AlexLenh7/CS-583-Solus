@@ -44,6 +44,7 @@ public class PowerUp : MonoBehaviour
     {
         switch (type)
         {
+            // add to player speed boost
             case PowerupType.SpeedBoost:
                 PlayerMovement movement = player.GetComponent<PlayerMovement>();
                 if (movement != null)
@@ -56,6 +57,7 @@ public class PowerUp : MonoBehaviour
                 }
                 break;
 
+            // Add to player attack damage 
             case PowerupType.DamageBoost:
                 PlayerAttack attack = player.GetComponent<PlayerAttack>();
                 if (attack != null)
@@ -68,6 +70,7 @@ public class PowerUp : MonoBehaviour
                 }
                 break;
 
+            // check to see if max health is 200 after adding health powerup
             case PowerupType.HealthBoost:
                 PlayerStats stats = player.GetComponent<PlayerStats>();
                 if (stats != null)
