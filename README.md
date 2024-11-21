@@ -96,9 +96,3 @@ Balancing the power-up system required:
 - Boss battles
 - Save system for high scores
 - Additional weapon types
-
-
-[Your contact information]
-
----
-Feel free to report any issues or suggest improvements by creating an issue in this repository.
